@@ -6,6 +6,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "evento")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DiscriminatorColumn(name = "tipo_evento", discriminatorType = DiscriminatorType.STRING)
+@NamedQuery(name = "Evento.getConcertiInStreaming", query = "SELECT c FROM Concerto c WHERE c.inStreaming = :inStreaming")
+@NamedQuery(name = "Evento.getConcertiPerGenere", query = "SELECT c FROM Concerto c WHERE c.genere = :genere")
 public class Evento {
     @Id
     @GeneratedValue

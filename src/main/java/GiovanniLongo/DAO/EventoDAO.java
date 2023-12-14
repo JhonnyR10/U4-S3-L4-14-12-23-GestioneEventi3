@@ -1,9 +1,13 @@
 package GiovanniLongo.DAO;
 
+import GiovanniLongo.entities.Concerto;
 import GiovanniLongo.entities.Evento;
+import GiovanniLongo.entities.GenereMusica;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class EventoDAO {
     private final EntityManager em;
@@ -40,5 +44,17 @@ public class EventoDAO {
         }
 
 
+    }
+
+    public List<Concerto> getConcertiInStreaming(boolean inStreaming) {
+        TypedQuery<Concerto> query = em.createQuery("SELECT c FROM Concerto c WHERE c.inStreaming = :inStreaming", Concerto.class);
+        query.setParameter("inStreaming", inStreaming);
+        return query.getResultList();
+    }
+
+    public List<Concerto> getConcertiPerGenere(GenereMusica genere) {
+        TypedQuery<Concerto> query = em.createQuery("SELECT c FROM Concerto c WHERE c.genere = :genere", Concerto.class);
+        query.setParameter("genere", genere);
+        return query.getResultList();
     }
 }

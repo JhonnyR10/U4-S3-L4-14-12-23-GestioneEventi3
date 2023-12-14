@@ -18,6 +18,8 @@ public class Persona {
     private PersonaSesso sesso;
     @OneToMany(mappedBy = "persona")
     private List<Partecipazione> listaPartecipazioni;
+    @ManyToMany(mappedBy = "atleti")
+    private List<GaraDiAtletica> garePartecipate;
 
     public Persona() {
     }

@@ -25,7 +25,7 @@ public class Application {
         Location location1 = new Location("Miramare", "Soverato");
         Location location2 = new Location("Mamas", "Soverato");
 
-//        ld.save(location1);
+        //       ld.save(location1);
 //        ld.save(location2);
 
         Persona persona1 = new Persona("Giovanni", "Longo", "email@email.it", LocalDate.of(1992, 8, 10), PersonaSesso.M);
@@ -39,7 +39,8 @@ public class Application {
 //        ed.save(evento1);
         //   ed.save(evento2);
         //ed.save(evento3);
-
+        Concerto concerto1 = new Concerto("Concerto1", LocalDate.of(2023, 12, 31), "Concerto di capodanno", EventType.PRIVATO, 1000, location1, GenereMusica.POP, true);
+//        ed.save(concerto1);
 //        Partecipazione partecipazione1 = new Partecipazione(persona1, evento1, PartecipazioneStato.CONFERMATA);
 //        pd.save(partecipazione1);
 
@@ -57,6 +58,8 @@ public class Application {
 //        System.out.println("Inserire l'id dell'evento che si desidera eliminare");
 //        long idDelete = Long.parseLong(input.nextLine());
 //        ed.findByIdAndDelete(idDelete);
+        ed.getConcertiInStreaming(true).forEach(System.out::println);
+        ed.getConcertiPerGenere(GenereMusica.POP).forEach(System.out::println);
         em.close();
         System.out.println("ciao");
     }
