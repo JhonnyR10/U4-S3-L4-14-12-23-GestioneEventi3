@@ -26,7 +26,7 @@ public class Application {
         Location location2 = new Location("Mamas", "Soverato");
 
         //       ld.save(location1);
-//        ld.save(location2);
+        //ld.save(location2);
 
         Persona persona1 = new Persona("Giovanni", "Longo", "email@email.it", LocalDate.of(1992, 8, 10), PersonaSesso.M);
         Persona persona2 = new Persona("Francesco", "Leo", "email2@email.it", LocalDate.of(1993, 7, 23), PersonaSesso.M);
@@ -40,6 +40,12 @@ public class Application {
         //   ed.save(evento2);
         //ed.save(evento3);
         Concerto concerto1 = new Concerto("Concerto1", LocalDate.of(2023, 12, 31), "Concerto di capodanno", EventType.PRIVATO, 1000, location1, GenereMusica.POP, true);
+        PartitaDiCalcio partita1 = new PartitaDiCalcio("Partita andata", LocalDate.of(2023, 12, 31), "Partita di andata", EventType.PUBBLICO, 22, location2, "Juventus", "Inter", "Juventus", 2, 0);
+        PartitaDiCalcio partita2 = new PartitaDiCalcio("Partita ritorno", LocalDate.of(2024, 1, 15), "Partita di ritorno", EventType.PUBBLICO, 22, location2, "Inter", "Juventus", "Juventus", 0, 3);
+
+//        ed.save(partita1);
+//        ed.save(partita2);
+
 //        ed.save(concerto1);
 //        Partecipazione partecipazione1 = new Partecipazione(persona1, evento1, PartecipazioneStato.CONFERMATA);
 //        pd.save(partecipazione1);
@@ -60,6 +66,13 @@ public class Application {
 //        ed.findByIdAndDelete(idDelete);
         ed.getConcertiInStreaming(true).forEach(System.out::println);
         ed.getConcertiPerGenere(GenereMusica.POP).forEach(System.out::println);
+
+        ed.getPartiteVinteInCasa("Juventus").forEach(System.out::println);
+        ed.getPartiteVinteInTrasferta("Juventus").forEach(System.out::println);
+
+        System.out.println(ed.getTitoliPartiteVinteInCasa("Juventus"));
+        System.out.println(ed.getTitoliPartiteVinteInTrasferta("Juventus"));
+
         em.close();
         System.out.println("ciao");
     }

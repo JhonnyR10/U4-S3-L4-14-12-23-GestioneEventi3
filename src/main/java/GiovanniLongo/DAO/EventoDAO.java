@@ -3,6 +3,7 @@ package GiovanniLongo.DAO;
 import GiovanniLongo.entities.Concerto;
 import GiovanniLongo.entities.Evento;
 import GiovanniLongo.entities.GenereMusica;
+import GiovanniLongo.entities.PartitaDiCalcio;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -55,6 +56,30 @@ public class EventoDAO {
     public List<Concerto> getConcertiPerGenere(GenereMusica genere) {
         TypedQuery<Concerto> query = em.createQuery("SELECT c FROM Concerto c WHERE c.genere = :genere", Concerto.class);
         query.setParameter("genere", genere);
+        return query.getResultList();
+    }
+
+    public List<PartitaDiCalcio> getPartiteVinteInCasa(String squadra) {
+        TypedQuery<PartitaDiCalcio> query = em.createNamedQuery("PartitaDiCalcio.getPartiteVinteInCasa", PartitaDiCalcio.class);
+        query.setParameter("squadra", squadra);
+        return query.getResultList();
+    }
+
+    public List<PartitaDiCalcio> getPartiteVinteInTrasferta(String squadra) {
+        TypedQuery<PartitaDiCalcio> query = em.createNamedQuery("PartitaDiCalcio.getPartiteVinteInTrasferta", PartitaDiCalcio.class);
+        query.setParameter("squadra", squadra);
+        return query.getResultList();
+    }
+
+    public List<String> getTitoliPartiteVinteInCasa(String squadra) {
+        TypedQuery<String> query = em.createNamedQuery("PartitaDiCalcio.getTitoliPartiteVinteInCasa", String.class);
+        query.setParameter("squadra", squadra);
+        return query.getResultList();
+    }
+
+    public List<String> getTitoliPartiteVinteInTrasferta(String squadra) {
+        TypedQuery<String> query = em.createNamedQuery("PartitaDiCalcio.getTitoliPartiteVinteInTrasferta", String.class);
+        query.setParameter("squadra", squadra);
         return query.getResultList();
     }
 }

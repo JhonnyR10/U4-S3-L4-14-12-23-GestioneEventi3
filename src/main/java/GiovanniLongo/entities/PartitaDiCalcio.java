@@ -1,11 +1,16 @@
 package GiovanniLongo.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "partitaDiCalcio")
+@NamedQuery(name = "PartitaDiCalcio.getPartiteVinteInCasa", query = "SELECT p FROM PartitaDiCalcio p WHERE p.squadraDiCasa = :squadra AND p.squadraVincente = :squadra")
+@NamedQuery(name = "PartitaDiCalcio.getPartiteVinteInTrasferta", query = "SELECT p FROM PartitaDiCalcio p WHERE p.squadraOspite = :squadra AND p.squadraVincente = :squadra")
+@NamedQuery(name = "PartitaDiCalcio.getTitoliPartiteVinteInCasa", query = "SELECT p.titolo FROM PartitaDiCalcio p WHERE p.squadraDiCasa = :squadra AND p.squadraVincente = :squadra")
+@NamedQuery(name = "PartitaDiCalcio.getTitoliPartiteVinteInTrasferta", query = "SELECT p.titolo FROM PartitaDiCalcio p WHERE p.squadraOspite = :squadra AND p.squadraVincente = :squadra")
 public class PartitaDiCalcio extends Evento {
     private String squadraDiCasa;
     private String squadraOspite;
